@@ -1,9 +1,9 @@
 <template>
   <div class="box">
     <swiper ref="mySwiper" :options="swiperOption">
-      <swiper-slide><img src="../../../assets/images/img1.jpg" /></swiper-slide>
-      <swiper-slide><img src="../../../assets/images/img2.jpg" /></swiper-slide>
-      <swiper-slide><img src="../../../assets/images/img3.jpg" /></swiper-slide>
+      <swiper-slide v-for="item in  swiperList" :key='item.id'>
+        <img :src="item.srcUrl" />
+      </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
   </div>
@@ -18,7 +18,21 @@ export default {
           el: '.swiper-pagination'
         },
         loop: true
-      }
+      },
+      swiperList: [
+        {
+          id: '001',
+          srcUrl: require('../../../assets/images/img1.jpg')
+        },
+        {
+          id: '002',
+          srcUrl: require('../../../assets/images/img2.jpg')
+        },
+        {
+          id: '003',
+          srcUrl: require('../../../assets/images/img3.jpg')
+        }
+      ]
     }
   }
 }
