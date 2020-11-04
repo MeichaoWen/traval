@@ -22,15 +22,15 @@ export default {
       swiperList: [
         {
           id: '001',
-          srcUrl: require('@/assets/images/img1.jpg')
+          srcUrl: require('@/assets/images/img8.jpeg')
         },
         {
           id: '002',
-          srcUrl: require('@/assets/images/img2.jpg')
+          srcUrl: require('@/assets/images/img9.jpeg')
         },
         {
           id: '003',
-          srcUrl: require('@/assets/images/img3.jpg')
+          srcUrl: require('@/assets/images/img10.jpeg')
         }
       ]
     }
@@ -43,7 +43,7 @@ export default {
 }
 .box
   height 0
-  padding-bottom 73.2%
+  padding-bottom 30.5%
   background-color #ccc
   img
     width: 100%
