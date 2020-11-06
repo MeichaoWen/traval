@@ -1,8 +1,8 @@
 <template>
   <div class="box">
-    <swiper ref="mySwiper" :options="swiperOption">
-      <swiper-slide v-for="item of swiperList" :key='item.id'>
-        <img :src="item.srcUrl" />
+    <swiper ref="mySwiper" :options="swiperOption" v-if="sweiperlength">
+      <swiper-slide v-for="item of list" :key='item.id'>
+        <img :src="item.imgUrl" />
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
@@ -11,28 +11,23 @@
 <script>
 export default {
   name: 'HomeSwiper',
+  props: {
+    list: Array
+  },
   data () {
     return {
       swiperOption: {
+        loop: true,
+        autoplay: true,
         pagination: {
           el: '.swiper-pagination'
-        },
-        loop: true
-      },
-      swiperList: [
-        {
-          id: '001',
-          srcUrl: require('@/assets/images/img8.jpeg')
-        },
-        {
-          id: '002',
-          srcUrl: require('@/assets/images/img9.jpeg')
-        },
-        {
-          id: '003',
-          srcUrl: require('@/assets/images/img10.jpeg')
         }
-      ]
+      }
+    }
+  },
+  computed: {
+    sweiperlength () {
+      return this.list.length
     }
   }
 }
@@ -43,7 +38,7 @@ export default {
 }
 .box
   height 0
-  padding-bottom 30.5%
+  padding-bottom 31.25%
   background-color #ccc
   img
     width: 100%

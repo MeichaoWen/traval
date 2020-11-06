@@ -8,14 +8,17 @@
       <input type="text" placeholder="输入城市/景点/游玩主题">
     </div>
     <div class="header-right">
-      城市
+      {{area}}
       <span class="iconfont icon-more">&#xe62d;</span>
     </div>
   </div>
 </template>
 <script>
 export default {
-  name: 'HomeHeader'
+  name: 'HomeHeader',
+  props: {
+    area: String
+  }
 }
 </script>
 <style  scoped lang="stylus">

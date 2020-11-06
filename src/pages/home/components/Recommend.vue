@@ -2,11 +2,11 @@
   <div>
     <h3 class="title">热销推荐</h3>
     <ul class="items">
-      <li class="item" v-for="item of itemList" :key="item.id">
-        <img :src="item.srcUrl"/>
+      <li class="item" v-for="item of list" :key="item.id">
+        <img :src="item.imgUrl"/>
         <div class="item-dec">
-          <p>{{item.itemTitle}}</p>
-          <p>{{item.itemInfo}}</p>
+          <p>{{item.title}}</p>
+          <p>{{item.desc}}</p>
           <button>了解更多</button>
         </div>
       </li>
@@ -16,51 +16,8 @@
 <script>
 export default {
   name: 'HomeRecommend',
-  data () {
-    return {
-      itemList: [
-        {
-          id: '001',
-          srcUrl: require('@/assets/images/re01.jpg'),
-          itemTitle: '北京-泰国豪华5日游',
-          itemInfo:
-            '错峰出行，火爆预售🔥直飞曼芭沙7日♥一天自由活动♥五钻酒店♥快艇出海沙美岛'
-        },
-        {
-          id: '002',
-          srcUrl: require('@/assets/images/re02.jpg'),
-          itemTitle: '北京-日本自助游',
-          itemInfo:
-            '日本丨本州特色7日游 心斋桥 迪士尼乐园 大阪环球影城 升级一晚温泉体验'
-        },
-        {
-          id: '003',
-          srcUrl: require('@/assets/images/re03.jpg'),
-          itemTitle: '颐和园',
-          itemInfo: '北方也有江南园林'
-        },
-        {
-          id: '004',
-          srcUrl: require('@/assets/images/re01.jpg'),
-          itemTitle: '北京-泰国豪华5日游',
-          itemInfo:
-            '错峰出行，火爆预售🔥直飞曼芭沙7日♥一天自由活动♥五钻酒店♥快艇出海沙美岛'
-        },
-        {
-          id: '005',
-          srcUrl: require('@/assets/images/re02.jpg'),
-          itemTitle: '北京-日本自助游',
-          itemInfo:
-            '日本丨本州特色7日游 心斋桥 迪士尼乐园 大阪环球影城 升级一晚温泉体验'
-        },
-        {
-          id: '006',
-          srcUrl: require('@/assets/images/re03.jpg'),
-          itemTitle: '颐和园',
-          itemInfo: '北方也有江南园林'
-        }
-      ]
-    }
+  props: {
+    list: Array
   }
 }
 </script>
@@ -97,6 +54,6 @@ export default {
       border-radius .1rem
       padding .08rem .135rem
       margin-top .22rem
-      margin-left 3.8rem
+      margin-left 3.6rem
       font-size .14rem
 </style>
