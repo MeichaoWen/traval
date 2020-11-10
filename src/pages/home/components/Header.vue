@@ -7,10 +7,12 @@
       <span class="iconfont">&#xe632;</span>
       <input type="text" placeholder="输入城市/景点/游玩主题">
     </div>
+    <router-link to="/city">
     <div class="header-right">
       {{area}}
       <span class="iconfont icon-more">&#xe62d;</span>
     </div>
+    </router-link>
   </div>
 </template>
 <script>

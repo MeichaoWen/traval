@@ -1,12 +1,13 @@
 <template>
   <div>
-    <h3 class="title">周末去哪儿</h3>
+    <h3 class="title">热销推荐</h3>
     <ul class="items">
       <li class="item" v-for="item of list" :key="item.id">
-        <div class="item-img"><img :src="item.imgUrl"/></div>
+        <img :src="item.imgUrl"/>
         <div class="item-dec">
           <p>{{item.title}}</p>
           <p>{{item.desc}}</p>
+          <button>了解更多</button>
         </div>
       </li>
     </ul>
@@ -27,24 +28,32 @@ export default {
   line-height: 0.75rem;
   background-color: #eeeeee;
   text-indent: 0.15rem;
-  margin-bottom .12rem
+  margin-top: 0.12rem;
 }
 .item
-  .item-img
-  height 0
-  overflow hidden
-  padding-bottom 37.09%
+  display flex
+  height 1.9rem
   img
-    width 100%
+    width 2rem
+    height auto
+    padding .12rem
   .item-dec
+    flex 1
     min-width 0
-    padding 0 .15rem .15rem .15rem
     p:nth-of-type(1)
-      line-height 2
+      line-height .7rem
       ellipsis()
     p:nth-of-type(2)
       line-height 1
       color #999
       font-size .2rem
       ellipsis()
+    button
+      background-color bgColor
+      color #ffffff
+      border-radius .1rem
+      padding .08rem .135rem
+      margin-top .22rem
+      margin-left 3.6rem
+      font-size .14rem
 </style>
