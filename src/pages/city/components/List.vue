@@ -10,46 +10,15 @@
       <div class="area">
         <h3 class="title border-topbottom">热门城市</h3>
         <ul class="list-items">
-          <li class="item"><div class="border item-content">北京</div></li>
-          <li class="item"><div class="border item-content">北京</div></li>
-          <li class="item"><div class="border item-content">北京</div></li>
-          <li class="item"><div class="border item-content">北京</div></li>
-          <li class="item"><div class="border item-content">北京</div></li>
-          <li class="item"><div class="border item-content">北京</div></li>
+          <li class="item"  v-for="item of list" :key="item.id">
+            <div class="border item-content">{{item.name}}</div>
+          </li>
         </ul>
       </div>
-      <div class="area">
-        <h3 class="title border-topbottom">A</h3>
+      <div class="area" v-for="(icity,key) of city" :key="key" :ref="key">
+        <h3 class="title border-topbottom">{{key}}</h3>
         <ul class="list-box">
-          <li class="box border-bottom">阿拉善盟</li>
-          <li class="box border-bottom">阿拉善盟</li>
-          <li class="box border-bottom">阿拉善盟</li>
-          <li class="box border-bottom">阿拉善盟</li>
-          <li class="box border-bottom">阿拉善盟</li>
-          <li class="box border-bottom">阿拉善盟</li>
-          <li class="box border-bottom">阿拉善盟</li>
-          <li class="box border-bottom">阿拉善盟</li>
-          <li class="box border-bottom">阿拉善盟</li>
-          <li class="box border-bottom">阿拉善盟</li>
-          <li class="box border-bottom">阿拉善盟</li>
-          <li class="box border-bottom">阿拉善盟</li>
-        </ul>
-      </div>
-      <div class="area">
-        <h3 class="title border-topbottom">B</h3>
-        <ul class="list-box">
-          <li class="box border-bottom">阿拉善盟</li>
-          <li class="box border-bottom">阿拉善盟</li>
-          <li class="box border-bottom">阿拉善盟</li>
-          <li class="box border-bottom">阿拉善盟</li>
-          <li class="box border-bottom">阿拉善盟</li>
-          <li class="box border-bottom">阿拉善盟</li>
-          <li class="box border-bottom">阿拉善盟</li>
-          <li class="box border-bottom">阿拉善盟</li>
-          <li class="box border-bottom">阿拉善盟</li>
-          <li class="box border-bottom">阿拉善盟</li>
-          <li class="box border-bottom">阿拉善盟</li>
-          <li class="box border-bottom">阿拉善盟</li>
+          <li class="box border-bottom" v-for="item of icity" :key="item.id">{{item.name}}</li>
         </ul>
       </div>
     </div>
@@ -59,8 +28,21 @@
 import BScroll from 'better-scroll'
 export default {
   name: 'CityList',
-  mounted () {
+  props: {
+    list: Array,
+    city: Object,
+    letter: String
+  },
+  updated () {
     this.scroll = new BScroll(this.$refs.wrapper, {})
+  },
+  watch: {
+    letter () {
+      if (this.letter) {
+        const element = this.$refs[this.letter][0]
+        this.scroll.scrollToElement(element)
+      }
+    }
   }
 }
 </script>
@@ -89,7 +71,7 @@ export default {
   .list-items
     display flex
     flex-wrap wrap
-    padding .1rem .64rem .1rem .1rem
+    padding .1rem .56rem .1rem .1rem
     .item
       width 33.33%
       .item-content
