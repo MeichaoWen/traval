@@ -4,7 +4,7 @@
       <div class="area">
         <h3 class="title border-topbottom">当前位置</h3>
         <ul class="list-items">
-          <li class="item"><div class="border item-content">{{this.$store.state.city}}</div></li>
+          <li class="item"><div class="border item-content">{{this.currentCity}}</div></li>
         </ul>
       </div>
       <div class="area">
@@ -26,12 +26,23 @@
 </template>
 <script>
 import BScroll from 'better-scroll'
+import { mapState, mapActions } from 'vuex'
 export default {
   name: 'CityList',
+  data () {
+    return {
+      time: null
+    }
+  },
   props: {
     list: Array,
     city: Object,
     letter: String
+  },
+  computed: {
+    ...mapState({
+      currentCity: 'city'
+    })
   },
   watch: {
     letter () {
@@ -43,10 +54,16 @@ export default {
   },
   methods: {
     changeCity (city) {
-      console.log(city)
-      this.$store.dispatch('changeCites', city)
-      this.$router.push('/')
-    }
+      if (this.time) {
+        clearTimeout(this.time)
+      }
+      this.time = setTimeout(() => {
+        console.log(city)
+        this.changeCites(city)
+        this.$router.push('/')
+      }, 24)
+    },
+    ...mapActions(['changeCites'])
   },
   updated () {
     this.scroll = new BScroll(this.$refs.wrapper, {click: true})

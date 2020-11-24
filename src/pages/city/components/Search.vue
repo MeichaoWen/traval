@@ -5,13 +5,14 @@
   </div>
   <div class="search-content" ref="search" v-show="keyword">
     <ul>
-      <li class="search-item border-bottom" v-for="item of list" :key="item.id" @click.stop="changeCity(item.name)">{{item.name}}</li>
+      <li class="search-item border-bottom" v-for="item of list" :key="item.id" @click="changeCity(item.name)">{{item.name}}</li>
       <li class="search-item border-bottom" v-show="noData">未找到匹配数据</li>
     </ul>
   </div>
   </div>
 </template>
 <script>
+import { mapActions } from 'vuex'
 import BScroll from 'better-scroll'
 export default {
   name: 'CitySearch',
@@ -54,15 +55,16 @@ export default {
   },
   methods: {
     changeCity (city) {
-      if (this.timer) {
-        clearTimeout(this.timer)
+      if (this.time) {
+        clearTimeout(this.time)
       }
       this.time = setTimeout(() => {
         console.log(city)
-        this.$store.dispatch('changeCites', city)
+        this.changeCites(city)
         this.$router.push('/')
       }, 24)
-    }
+    },
+    ...mapActions(['changeCites'])
   }
 }
 </script>
