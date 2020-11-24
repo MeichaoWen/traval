@@ -5,7 +5,7 @@
   </div>
   <div class="search-content" ref="search" v-show="keyword">
     <ul>
-      <li class="search-item border-bottom" v-for="item of list" :key="item.id">{{item.name}}</li>
+      <li class="search-item border-bottom" v-for="item of list" :key="item.id" @click.stop="changeCity(item.name)">{{item.name}}</li>
       <li class="search-item border-bottom" v-show="noData">未找到匹配数据</li>
     </ul>
   </div>
@@ -22,7 +22,8 @@ export default {
     return {
       keyword: '',
       list: [],
-      timer: null
+      timer: null,
+      time: null
     }
   },
   computed: {
@@ -31,7 +32,7 @@ export default {
     }
   },
   updated () {
-    this.scroll = new BScroll(this.$refs.search, {})
+    this.scroll = new BScroll(this.$refs.search, {click: true})
   },
   watch: {
     keyword () {
@@ -42,7 +43,6 @@ export default {
         var result = []
         for (var i in this.city) {
           this.city[i].forEach(value => {
-            console.log(value)
             if (value.spell.indexOf(this.keyword) > -1 || value.name.indexOf(this.keyword) > -1) {
               result.push(value)
             }
@@ -50,6 +50,18 @@ export default {
         }
         this.list = result
       }, 100)
+    }
+  },
+  methods: {
+    changeCity (city) {
+      if (this.timer) {
+        clearTimeout(this.timer)
+      }
+      this.time = setTimeout(() => {
+        console.log(city)
+        this.$store.dispatch('changeCites', city)
+        this.$router.push('/')
+      }, 24)
     }
   }
 }

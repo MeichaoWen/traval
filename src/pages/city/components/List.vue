@@ -4,13 +4,13 @@
       <div class="area">
         <h3 class="title border-topbottom">当前位置</h3>
         <ul class="list-items">
-          <li class="item"><div class="border item-content">北京</div></li>
+          <li class="item"><div class="border item-content">{{this.$store.state.city}}</div></li>
         </ul>
       </div>
       <div class="area">
         <h3 class="title border-topbottom">热门城市</h3>
         <ul class="list-items">
-          <li class="item"  v-for="item of list" :key="item.id">
+          <li class="item"  v-for="item of list" :key="item.id" @click="changeCity(item.name)">
             <div class="border item-content">{{item.name}}</div>
           </li>
         </ul>
@@ -18,7 +18,7 @@
       <div class="area" v-for="(icity,key) of city" :key="key" :ref="key">
         <h3 class="title border-topbottom">{{key}}</h3>
         <ul class="list-box">
-          <li class="box border-bottom" v-for="item of icity" :key="item.id">{{item.name}}</li>
+          <li class="box border-bottom" v-for="item of icity" :key="item.id" @click="changeCity(item.name)">{{item.name}}</li>
         </ul>
       </div>
     </div>
@@ -33,9 +33,6 @@ export default {
     city: Object,
     letter: String
   },
-  updated () {
-    this.scroll = new BScroll(this.$refs.wrapper, {})
-  },
   watch: {
     letter () {
       if (this.letter) {
@@ -43,6 +40,16 @@ export default {
         this.scroll.scrollToElement(element)
       }
     }
+  },
+  methods: {
+    changeCity (city) {
+      console.log(city)
+      this.$store.dispatch('changeCites', city)
+      this.$router.push('/')
+    }
+  },
+  updated () {
+    this.scroll = new BScroll(this.$refs.wrapper, {click: true})
   }
 }
 </script>

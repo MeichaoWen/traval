@@ -16,7 +16,6 @@ export default {
   },
   updated () {
     if (this.list.length > 1) {
-      console.log(this.swiper)
       this.swiper.init()
     }
   },

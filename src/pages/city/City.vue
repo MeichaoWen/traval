@@ -31,7 +31,6 @@ export default {
   methods: {
     getData () {
       axios.get('/static/mock/city.json').then(response => {
-        console.log(response.data)
         const data = response.data
         if (data.ret && data.data) {
           this.hotCity = data.data.hotCities
