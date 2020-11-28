@@ -2,14 +2,14 @@
   <div>
     <h3 class="title">热销推荐</h3>
     <ul class="items">
-      <li class="item" v-for="item of list" :key="item.id">
+      <router-link tag="li" class="item" v-for="item of list" :key="item.id" :to="'/detail/' + item.id" >
         <img :src="item.imgUrl"/>
         <div class="item-dec">
           <p>{{item.title}}</p>
           <p>{{item.desc}}</p>
           <button>了解更多</button>
         </div>
-      </li>
+      </router-link>
     </ul>
   </div>
 </template>
