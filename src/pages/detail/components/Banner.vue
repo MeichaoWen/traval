@@ -1,5 +1,6 @@
 <template>
-  <div class="banner">
+<div>
+  <div class="banner" @click="handleGallary">
     <img src="../../../assets/images/detail01.jpg" class="banner-img" />
     <div class="banner-info">
       <div class="banner-title">超高性价比+全程入住近海酒店+赠车技表演秀+嗨玩蜈支洲一整天</div>
@@ -9,11 +10,33 @@
       </div>
     </div>
   </div>
+  <common-gallary :imgs="imgs" v-show="showGallary" @close="handleGallaryClose"></common-gallary>
+</div>
 </template>
 <script>
+import CommonGallary from 'common/gallary/Gallary'
 export default {
-  name: "DetailBanner",
-};
+  name: 'DetailBanner',
+  components: {
+    CommonGallary
+  },
+  data () {
+    return {
+      showGallary: false,
+      imgs: [
+        require('../../../assets/images/detail01.jpg'), require('../../../assets/images/detail02.jpg')
+      ]
+    }
+  },
+  methods: {
+    handleGallary () {
+      this.showGallary = true
+    },
+    handleGallaryClose () {
+      this.showGallary = false
+    }
+  }
+}
 </script>
 <style  scoped lang="stylus">
 @import '~style/mintext.styl'
@@ -22,12 +45,12 @@ export default {
   overflow: hidden;
   padding-bottom: 66.67%;
   position: relative;
-  .banner-img 
+  .banner-img
     width: 100%;
   .banner-info
     background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.8))
     display flex
-    justify-content space-around 
+    justify-content space-around
     position: absolute;
     left: 0;
     bottom: 0;
