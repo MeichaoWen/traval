@@ -63,6 +63,7 @@ export default {
   box-sizing border-box
   color #fff
 .header-fixed
+  z-index 2
   font-size .32rem
   height .86rem;
   line-height .86rem
