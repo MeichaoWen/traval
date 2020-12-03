@@ -1,16 +1,16 @@
 <template>
 <div>
   <div class="banner" @click="handleGallary">
-    <img src="../../../assets/images/detail01.jpg" class="banner-img" />
+    <img :src="bannerImg" class="banner-img" />
     <div class="banner-info">
-      <div class="banner-title">超高性价比+全程入住近海酒店+赠车技表演秀+嗨玩蜈支洲一整天</div>
+      <div class="banner-title">{{sightName}}</div>
       <div class="banner-number">
         <span class="iconfont">&#xe644;</span>
-        39
+        {{gallaryImgs.length}}
       </div>
     </div>
   </div>
-  <common-gallary :imgs="imgs" v-show="showGallary" @close="handleGallaryClose"></common-gallary>
+  <common-gallary :imgs="gallaryImgs" v-show="showGallary" @close="handleGallaryClose"></common-gallary>
 </div>
 </template>
 <script>
@@ -20,12 +20,14 @@ export default {
   components: {
     CommonGallary
   },
+  props: {
+    gallaryImgs: Array,
+    bannerImg: String,
+    sightName: String
+  },
   data () {
     return {
-      showGallary: false,
-      imgs: [
-        require('../../../assets/images/detail01.jpg'), require('../../../assets/images/detail02.jpg')
-      ]
+      showGallary: false
     }
   },
   methods: {
@@ -43,7 +45,7 @@ export default {
 .banner
   height: 0;
   overflow: hidden;
-  padding-bottom: 66.67%;
+  padding-bottom: 55%;
   position: relative;
   .banner-img
     width: 100%;
