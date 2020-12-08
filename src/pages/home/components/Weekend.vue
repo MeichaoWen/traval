@@ -31,11 +31,11 @@ export default {
 }
 .item
   .item-img
-  height 0
-  overflow hidden
-  padding-bottom 37.09%
-  img
-    width 100%
+    height 0
+    overflow hidden
+    padding-bottom 37.09%
+    img
+      width 100%
   .item-dec
     min-width 0
     padding 0 .15rem .15rem .15rem
